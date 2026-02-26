@@ -1,0 +1,418 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-26T19:27:32.104Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 17,
+    "implemented": 16,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Create the main application shell with the title 'Aim 100/100 Boards 2026–27' prominently displayed. Implement a premium EdTech visual theme with modern card-style components, professional typography (large clean sans-serif headings, readable body fonts), a cohesive color palette (rich deep tones — avoid blue/purple), and a polished layout that feels like a top-tier educational product.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/Layout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js"
+        ]
+      },
+      {
+        "id": "REQ-10",
+        "summary": "Build a Syllabus Tracker section. For each NCERT subject and its chapters, allow the user to mark progress. Display syllabus completion percentage per subject and overall. Assign completion categories: 50%, 60%, 70%, 80%, 90%, and 100% with distinct color indicators (e.g., red → orange → yellow → light green → green → gold). Store all progress in localStorage.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/SyllabusTracker.tsx",
+          "frontend/src/hooks/useSyllabusProgress.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/SyllabusTracker.tsx",
+          "frontend/src/hooks/useSyllabusProgress.ts",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-11",
+        "summary": "Add an Exam Countdown section. Allow the user to set the Board Exam date (defaulting to a 2027 board exam target). Display a large countdown showing days, hours, minutes, and seconds remaining. Also show motivational milestones (e.g., '90 days left — time to sprint!').",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ExamCountdown.tsx",
+          "frontend/src/hooks/useCountdown.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ExamCountdown.tsx",
+          "frontend/src/hooks/useCountdown.ts",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Implement Achievement Badges and a Study Streak Counter. Badges are awarded based on overall syllabus completion: 'Legend' at 80%+, 'Pro' at 90%+, 'GOAT' at 95%+. Study streak counts consecutive days the user has logged in or completed a study session; store streak data in localStorage. Display earned badges prominently on the dashboard with animated reveal effects.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/AchievementBadges.tsx",
+          "frontend/src/components/StudyStreak.tsx",
+          "frontend/src/hooks/useAchievements.ts",
+          "frontend/src/hooks/useStudyStreak.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/AchievementBadges.tsx",
+          "frontend/src/hooks/useStudyStreak.ts",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Add an AI Doubt Solving section. Implement a chat-style interface where the user can type questions. Connect to a simple rule-based or pre-seeded FAQ response system covering all NCERT subjects (Physics, Chemistry, Maths, Biology, English, etc.). Clearly label that answers are AI-assisted. Store conversation history in localStorage for the session.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/AIDoubtSolver.tsx",
+          "frontend/src/hooks/useAIDoubtSolver.ts",
+          "frontend/src/data/faqDatabase.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/AIDoubtSolver.tsx",
+          "frontend/src/hooks/useAIDoubtSolver.ts",
+          "frontend/src/data/faqDatabase.ts",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-14",
+        "summary": "Create a dedicated 90-Day Crash Course Mode section. Display a structured 90-day study plan broken down by day, week, and subject. Each day has tasks that can be marked complete. Show overall crash course progress percentage. Include motivational quotes per week. Store completion state in localStorage.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/CrashCourseMode.tsx",
+          "frontend/src/hooks/useCrashCourse.ts",
+          "frontend/src/data/crashCoursePlan.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/CrashCourseMode.tsx",
+          "frontend/src/hooks/useCrashCourse.ts",
+          "frontend/src/data/crashCoursePlan.ts",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-15",
+        "summary": "Add Sound Effects throughout the platform: a subtle click sound on button presses, a success chime when a chapter/task is marked complete, an alarm ring for the clock and Pomodoro timer, and a badge-unlock fanfare when an achievement badge is earned.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useSoundEffects.ts",
+          "frontend/public/sounds/click.mp3",
+          "frontend/public/sounds/success.mp3",
+          "frontend/public/sounds/alarm.mp3",
+          "frontend/public/sounds/fanfare.mp3",
+          "frontend/src/components/ClockSection.tsx",
+          "frontend/src/components/PomodoroTimer.tsx",
+          "frontend/src/components/SyllabusTracker.tsx",
+          "frontend/src/components/CrashCourseMode.tsx",
+          "frontend/src/components/AchievementBadges.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useSoundEffects.ts",
+          "frontend/src/components/ClockSection.tsx",
+          "frontend/src/components/PomodoroTimer.tsx",
+          "frontend/src/components/SyllabusTracker.tsx",
+          "frontend/src/components/CrashCourseMode.tsx",
+          "frontend/src/components/AchievementBadges.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Build a persistent backend store using Motoko stable variables to save: user credentials (hashed), syllabus progress per subject/chapter, study streak records, achievement badges, Pomodoro session history, alarm settings, notification entries, exam countdown date, crash course progress, and image metadata. Expose query and update methods for all data types.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-17",
+        "summary": "Apply a premium visual theme: use a rich dark-mode-first palette with gold/amber accent colors, deep charcoal/slate backgrounds, and crisp white text. Use motivational imagery in hero sections. Ensure consistent spacing, shadows, and hover animations on all cards. The overall feel must evoke aspiration and academic excellence.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/Dashboard.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/Dashboard.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Implement a Dark/Light mode toggle that switches the entire UI between a dark theme and a light theme. User's preference must be saved in localStorage and restored on page reload.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useTheme.ts",
+          "frontend/src/components/ThemeToggle.tsx",
+          "frontend/src/components/Layout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useTheme.ts"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Implement a login system with username and password. On first use, allow the user to set up a password (password protection). Authenticated state must be saved in localStorage so the user stays logged in across sessions. Show a lock screen / login form if not authenticated.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useAuth.ts",
+          "frontend/src/components/LoginScreen.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useAuth.ts",
+          "frontend/src/components/LoginScreen.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Build a Clock section with three tabs: (1) a live digital/analog clock, (2) an Alarm feature where the user can set one or more alarms with a time picker and a sound alert that fires in-browser, and (3) a Stopwatch with start, pause, lap, and reset controls. All state must be glitch-free and update in real time.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ClockSection.tsx",
+          "frontend/src/hooks/useAlarms.ts",
+          "frontend/src/hooks/useStopwatch.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ClockSection.tsx",
+          "frontend/src/hooks/useAlarms.ts",
+          "frontend/src/hooks/useStopwatch.ts",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Implement a Pomodoro-style study timer with configurable focus (default 25 min) and break (default 5 min) intervals. Include a long break after every 4 sessions. Display a circular progress indicator, session count, and play a sound effect on session/break transitions. Timer must run accurately without glitches even when the browser tab is in the background.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/PomodoroTimer.tsx",
+          "frontend/src/hooks/usePomodoro.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/PomodoroTimer.tsx",
+          "frontend/src/hooks/usePomodoro.ts",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Create an Image Gallery section with two independent upload banks of 500 slots each (Bank A and Bank B). Each slot allows the user to upload a single image (stored as base64 in localStorage). Display uploaded images in a responsive grid. Show slot usage (e.g., '47/500 used'). Allow deletion of individual images.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ImageGallery.tsx",
+          "frontend/src/hooks/useImageBank.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ImageGallery.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Add a Spotify-inspired Music Player section. Since direct Spotify API integration is not supported, embed a curated list of publicly available motivation songs and binaural beats (use direct audio URLs or embed links). Display track name, artist, and album art. Include play/pause, next, previous, and volume controls. Filter/tag tracks by type: 'Motivational' and 'Binaural Beats'.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/MusicPlayer.tsx",
+          "frontend/src/hooks/useAudioPlayer.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/MusicPlayer.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Add a Notifications/Feed section labeled 'NextTopper Updates'. Since real-time external webhook integration is not supported, allow the admin/user to manually post a 'new video uploaded' notification with a title, description, and optional link. Display these notifications in a feed sorted by newest first. Store notifications in localStorage. Show an unread badge count on the navigation icon.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/NotificationsFeed.tsx",
+          "frontend/src/hooks/useNotifications.ts",
+          "frontend/src/components/Layout.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/NotificationsFeed.tsx",
+          "frontend/src/hooks/useNotifications.ts",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Implement a Monthly Test Reminder system. For each NCERT subject, allow the user to set a monthly test date. Display upcoming tests in a calendar or list view. Show an in-app banner reminder when a test is due today or within 3 days. Store reminders in localStorage.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/TestReminders.tsx",
+          "frontend/src/hooks/useTestReminders.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/TestReminders.tsx",
+          "frontend/src/hooks/useTestReminders.ts",
+          "frontend/src/App.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/app-logo.dim_256x256.png",
+    "frontend/public/assets/generated/badge-goat.dim_256x256.png",
+    "frontend/public/assets/generated/badge-legend.dim_256x256.png",
+    "frontend/public/assets/generated/badge-pro.dim_256x256.png",
+    "frontend/public/assets/generated/hero-banner.dim_1400x500.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/AIDoubtSolver.tsx",
+    "frontend/src/components/AchievementBadges.tsx",
+    "frontend/src/components/ClockSection.tsx",
+    "frontend/src/components/CrashCourseMode.tsx",
+    "frontend/src/components/Dashboard.tsx",
+    "frontend/src/components/ExamCountdown.tsx",
+    "frontend/src/components/ImageGallery.tsx",
+    "frontend/src/components/LoginScreen.tsx",
+    "frontend/src/components/MainLayout.tsx",
+    "frontend/src/components/MusicPlayer.tsx",
+    "frontend/src/components/NotificationsFeed.tsx",
+    "frontend/src/components/PomodoroTimer.tsx",
+    "frontend/src/components/SyllabusTracker.tsx",
+    "frontend/src/components/TestReminders.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/data/crashCoursePlan.ts",
+    "frontend/src/data/faqDatabase.ts",
+    "frontend/src/data/ncertData.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useAIDoubtSolver.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useAlarms.ts",
+    "frontend/src/hooks/useAuth.ts",
+    "frontend/src/hooks/useCountdown.ts",
+    "frontend/src/hooks/useCrashCourse.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useNotifications.ts",
+    "frontend/src/hooks/usePomodoro.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/hooks/useSoundEffects.ts",
+    "frontend/src/hooks/useStopwatch.ts",
+    "frontend/src/hooks/useStudyStreak.ts",
+    "frontend/src/hooks/useSyllabusProgress.ts",
+    "frontend/src/hooks/useTestReminders.ts",
+    "frontend/src/hooks/useTheme.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

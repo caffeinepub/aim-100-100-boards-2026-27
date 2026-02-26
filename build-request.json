@@ -1,0 +1,380 @@
+{
+  "kind": "build_request",
+  "title": "Aim 100/100 Boards 2026–27 — Premium EdTech Study Platform",
+  "projectName": "Aim 100 Boards",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create the main application shell with the title 'Aim 100/100 Boards 2026–27' prominently displayed. Implement a premium EdTech visual theme with modern card-style components, professional typography (large clean sans-serif headings, readable body fonts), a cohesive color palette (rich deep tones — avoid blue/purple), and a polished layout that feels like a top-tier educational product.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Main Title: Aim 100/100 Boards 2026–27",
+          "Clean professional layout",
+          "Better fonts",
+          "Modern card style",
+          "Make it look like a premium EdTech platform",
+          "Professional look"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Main title 'Aim 100/100 Boards 2026–27' is visible on the landing/home screen",
+        "Layout uses modern card components with shadow and border-radius",
+        "Typography uses a premium font pairing for headings and body text",
+        "Overall aesthetic resembles a top-tier EdTech platform"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement a Dark/Light mode toggle that switches the entire UI between a dark theme and a light theme. User's preference must be saved in localStorage and restored on page reload.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Dark/Light mode toggle"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Toggle button is accessible from all sections",
+        "Switching modes updates the entire UI immediately",
+        "Mode preference persists across page refreshes via localStorage"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement a login system with username and password. On first use, allow the user to set up a password (password protection). Authenticated state must be saved in localStorage so the user stays logged in across sessions. Show a lock screen / login form if not authenticated.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Add login system",
+          "Password protection"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Login form is shown when the user is not authenticated",
+        "User can set and change their password",
+        "Correct credentials grant access to the full platform",
+        "Login state persists in localStorage",
+        "Incorrect password shows an error message"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Build a Clock section with three tabs: (1) a live digital/analog clock, (2) an Alarm feature where the user can set one or more alarms with a time picker and a sound alert that fires in-browser, and (3) a Stopwatch with start, pause, lap, and reset controls. All state must be glitch-free and update in real time.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "add clock app in website so that is can use alarm and stopwach feature"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Live clock displays current time and updates every second",
+        "User can add/remove alarms with specific times; alarm triggers an audio alert at the set time",
+        "Stopwatch counts up in HH:MM:SS.ms format with start, pause, lap, and reset",
+        "No UI glitches or timer drift"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement a Pomodoro-style study timer with configurable focus (default 25 min) and break (default 5 min) intervals. Include a long break after every 4 sessions. Display a circular progress indicator, session count, and play a sound effect on session/break transitions. Timer must run accurately without glitches even when the browser tab is in the background.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Real study timer (Pomodoro style) but wihout glich"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Timer counts down correctly for focus and break intervals",
+        "Visual circular progress updates each second",
+        "Audio chime plays when a session or break ends",
+        "Session counter increments correctly",
+        "Timer is accurate even with tab switching (uses Date-based calculation, not setInterval drift)"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Create an Image Gallery section with two independent upload banks of 500 slots each (Bank A and Bank B). Each slot allows the user to upload a single image (stored as base64 in localStorage). Display uploaded images in a responsive grid. Show slot usage (e.g., '47/500 used'). Allow deletion of individual images.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "add 500 slot for uploading the image and another 500 slot for uploading the image"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Two separate upload galleries exist (Bank A and Bank B), each with 500 slots",
+        "User can upload images to any empty slot",
+        "Images are displayed in a responsive grid",
+        "Slot usage counter is shown for each bank",
+        "Images persist in localStorage",
+        "Individual images can be deleted"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Add a Spotify-inspired Music Player section. Since direct Spotify API integration is not supported, embed a curated list of publicly available motivation songs and binaural beats (use direct audio URLs or embed links). Display track name, artist, and album art. Include play/pause, next, previous, and volume controls. Filter/tag tracks by type: 'Motivational' and 'Binaural Beats'.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "connect sportify but only motivation songs and binoreal beats"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Music player section is accessible from the main nav",
+        "Tracks are categorized as Motivational or Binaural Beats",
+        "Play/pause, next, previous, and volume controls work correctly",
+        "Currently playing track name and type are displayed"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add a Notifications/Feed section labeled 'NextTopper Updates'. Since real-time external webhook integration is not supported, allow the admin/user to manually post a 'new video uploaded' notification with a title, description, and optional link. Display these notifications in a feed sorted by newest first. Store notifications in localStorage. Show an unread badge count on the navigation icon.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "add next topper app so that if any video upload on that app there will be a notification in my website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Notifications feed is accessible from the main nav with an unread badge",
+        "User can add a new notification entry (title, description, optional link)",
+        "Notifications are displayed newest-first",
+        "Notifications persist in localStorage",
+        "Marking a notification as read clears the unread badge"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Implement a Monthly Test Reminder system. For each NCERT subject, allow the user to set a monthly test date. Display upcoming tests in a calendar or list view. Show an in-app banner reminder when a test is due today or within 3 days. Store reminders in localStorage.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "add a remainder so that every month have a test for each subject"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can set a monthly test date per subject",
+        "Upcoming tests are listed sorted by date",
+        "Banner alert appears for tests due today or within 3 days",
+        "Reminder data persists in localStorage"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Build a Syllabus Tracker section. For each NCERT subject and its chapters, allow the user to mark progress. Display syllabus completion percentage per subject and overall. Assign completion categories: 50%, 60%, 70%, 80%, 90%, and 100% with distinct color indicators (e.g., red → orange → yellow → light green → green → gold). Store all progress in localStorage.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "A category to syllabus completion at 50 60 70 80 90 and 100 percent",
+          "add all subjct of ncert"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All major NCERT subjects for Classes 11 & 12 (Physics, Chemistry, Maths, Biology, English, etc.) are listed",
+        "Each subject has chapters that can be marked complete",
+        "Completion percentage is calculated and displayed per subject",
+        "Color-coded category badge changes at 50/60/70/80/90/100% thresholds",
+        "Progress persists in localStorage"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Add an Exam Countdown section. Allow the user to set the Board Exam date (defaulting to a 2027 board exam target). Display a large countdown showing days, hours, minutes, and seconds remaining. Also show motivational milestones (e.g., '90 days left — time to sprint!').",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Add exam countdown"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can set/edit the target exam date",
+        "Countdown displays DD:HH:MM:SS and updates every second",
+        "Milestone messages appear based on days remaining",
+        "Exam date persists in localStorage"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Implement Achievement Badges and a Study Streak Counter. Badges are awarded based on overall syllabus completion: 'Legend' at 80%+, 'Pro' at 90%+, 'GOAT' at 95%+. Study streak counts consecutive days the user has logged in or completed a study session; store streak data in localStorage. Display earned badges prominently on the dashboard with animated reveal effects.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Achievement badges like if 80% or above than legand if 90% and above than pro if 90% and above than goat",
+          "Study streak counter"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Legend badge is shown when overall completion ≥ 80%",
+        "Pro badge is shown when overall completion ≥ 90%",
+        "GOAT badge is shown when overall completion ≥ 95%",
+        "Study streak counter increments daily and resets if a day is missed",
+        "Badges and streak are displayed on the dashboard",
+        "Data persists in localStorage"
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Add an AI Doubt Solving section. Implement a chat-style interface where the user can type questions. Connect to a simple rule-based or pre-seeded FAQ response system covering all NCERT subjects (Physics, Chemistry, Maths, Biology, English, etc.). Clearly label that answers are AI-assisted. Store conversation history in localStorage for the session.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Add AI doubt solving section that connected with you and me all answer",
+          "add personal Ai agent which is able to answer all question"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Chat interface accepts user questions",
+        "Pre-seeded NCERT subject Q&A responses are returned for matching questions",
+        "A fallback message guides the user when no answer is found",
+        "Conversation history is shown in the chat window",
+        "History persists in localStorage"
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Create a dedicated 90-Day Crash Course Mode section. Display a structured 90-day study plan broken down by day, week, and subject. Each day has tasks that can be marked complete. Show overall crash course progress percentage. Include motivational quotes per week. Store completion state in localStorage.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "90-day crash course mode in another section"
+        ]
+      },
+      "acceptanceCriteria": [
+        "90-day plan is displayed with day-by-day tasks",
+        "Tasks can be marked complete with a checkbox",
+        "Weekly motivational quote is shown",
+        "Overall crash course progress % is displayed",
+        "Completion state persists in localStorage"
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Add Sound Effects throughout the platform: a subtle click sound on button presses, a success chime when a chapter/task is marked complete, an alarm ring for the clock and Pomodoro timer, and a badge-unlock fanfare when an achievement badge is earned.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Sound effects"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Click sound plays on interactive button presses",
+        "Success chime plays when marking items complete",
+        "Alarm/chime plays when Pomodoro or clock alarm fires",
+        "Fanfare plays when a new badge is unlocked",
+        "All sounds are subtle and non-intrusive"
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Build a persistent backend store using Motoko stable variables to save: user credentials (hashed), syllabus progress per subject/chapter, study streak records, achievement badges, Pomodoro session history, alarm settings, notification entries, exam countdown date, crash course progress, and image metadata. Expose query and update methods for all data types.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Save progress permanently (local storage)",
+          "Cloud storage"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Stable variables are declared for all listed data types",
+        "Update methods correctly write and persist data across upgrades",
+        "Query methods return correct stored data",
+        "User credentials are stored as hashed values (SHA256 or similar)"
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "text": "Apply a premium visual theme: use a rich dark-mode-first palette with gold/amber accent colors, deep charcoal/slate backgrounds, and crisp white text. Use motivational imagery in hero sections. Ensure consistent spacing, shadows, and hover animations on all cards. The overall feel must evoke aspiration and academic excellence.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Real motivational photos",
+          "Premium EdTech platform"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Gold/amber accent color is used consistently for CTAs and highlights",
+        "Dark and light themes both look premium",
+        "Cards have shadow and smooth hover transitions",
+        "Hero/dashboard section includes a motivational visual element"
+      ]
+    }
+  ],
+  "constraints": [
+    "No external AI API integrations (OpenAI, Anthropic, etc.) — AI doubt solver must use a pre-seeded rule-based or FAQ approach",
+    "No direct Spotify API — use publicly embeddable audio or links only",
+    "No real-time WebSocket connections — NextTopper notifications are user-entered, not auto-pushed",
+    "All progress and user data must persist via localStorage on the frontend and stable variables on the backend",
+    "Do not modify files under frontend/src/hooks/ or frontend/src/components/ui",
+    "Single Motoko actor — no microservices"
+  ],
+  "nonGoals": [
+    "Real Spotify API OAuth integration",
+    "Real-time webhook from NextTopper app",
+    "SMS or email notifications",
+    "External cloud storage providers (AWS S3, Google Drive)",
+    "Mobile app (React Native / Flutter)",
+    "Real AI model API calls (OpenAI, Anthropic)",
+    "Internet Identity / Web3 wallet login",
+    "Multiplayer or collaborative study features"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Motivational student study hero banner — dark academic aesthetic, books and glowing light, gold tones (hero-banner.dim_1400x500.png)",
+      "Achievement badge icon — glowing gold shield with a laurel wreath for 'Legend' rank (badge-legend.dim_256x256.png)",
+      "Achievement badge icon — sleek silver-blue diamond for 'Pro' rank (badge-pro.dim_256x256.png)",
+      "Achievement badge icon — radiant crown with stars for 'GOAT' rank (badge-goat.dim_256x256.png)",
+      "App logo — bold stylized '100' with a graduation cap, gold and white on dark background (app-logo.dim_256x256.png)"
+    ],
+    "edits": []
+  }
+}

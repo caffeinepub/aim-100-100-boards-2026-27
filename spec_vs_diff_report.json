@@ -1,0 +1,96 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-26T19:27:32.099Z",
+  "summary": "The diff implements most frontend requirements (REQ-1 through REQ-15, REQ-17) and a partial backend (REQ-16). However, several critical gaps exist: the backend lacks stable variables and hashed credentials, the music player has no actual audio playback (only YouTube search links), and several REQ-16 data types are missing from the backend. Additionally, Internet Identity integration appears as a hallucinated feature, which was explicitly listed as a non-goal.",
+  "missing_requirements": [
+    {
+      "id": "REQ-16",
+      "requirement": "Build a persistent backend store using Motoko stable variables to save: user credentials (hashed), syllabus progress, study streak records, achievement badges, Pomodoro session history, alarm settings, notification entries, exam countdown date, crash course progress, and image metadata. User credentials stored as hashed values.",
+      "reason": "The backend uses Map.empty and List.empty without the 'stable' keyword, meaning data will not persist across canister upgrades. No hashing of credentials is implemented anywhere in the backend. Missing stable variables for: achievement badges, alarm settings, notification entries, exam countdown date, crash course progress, and image metadata.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Embed a curated list of publicly available motivation songs and binaural beats using direct audio URLs or embed links with working play/pause, next, previous, and volume controls.",
+      "reason": "The MusicPlayer component only stores YouTube search strings in a youtubeSearch field with no actual audio element, direct audio URLs, or embeds. Play/pause/next/previous controls exist in state but cannot actually play audio without a real audio source.",
+      "evidence": [
+        "frontend/src/components/MusicPlayer.tsx"
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "requirement": "Click sound plays on interactive button presses throughout the platform.",
+      "reason": "The useSoundEffects hook is used for alarm, success chime, and fanfare in various components, but no evidence of a click sound being attached to general button presses throughout the platform is visible in the diff.",
+      "evidence": [
+        "frontend/src/components/PomodoroTimer.tsx",
+        "frontend/src/components/SyllabusTracker.tsx",
+        "frontend/src/components/CrashCourseMode.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity / useInternetIdentity integration is implemented in useActor.ts, connecting the actor to an identity-based authentication system.",
+      "reason": "The build request explicitly lists 'Internet Identity / Web3 wallet login' as a non-goal. The useActor.ts file imports and uses useInternetIdentity, contradicting this constraint.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "A useActor.ts hook wrapping backend canister calls with tanstack/react-query and identity-based actor creation was added.",
+      "reason": "The build request specifies all progress and user data must persist via localStorage on the frontend. The actor pattern with Internet Identity authentication was not requested and contradicts the stated non-goals.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/AIDoubtSolver.tsx",
+    "frontend/src/components/AchievementBadges.tsx",
+    "frontend/src/components/ClockSection.tsx",
+    "frontend/src/components/CrashCourseMode.tsx",
+    "frontend/src/components/Dashboard.tsx",
+    "frontend/src/components/ExamCountdown.tsx",
+    "frontend/src/components/ImageGallery.tsx",
+    "frontend/src/components/LoginScreen.tsx",
+    "frontend/src/components/MainLayout.tsx",
+    "frontend/src/components/MusicPlayer.tsx",
+    "frontend/src/components/NotificationsFeed.tsx",
+    "frontend/src/components/PomodoroTimer.tsx",
+    "frontend/src/components/SyllabusTracker.tsx",
+    "frontend/src/components/TestReminders.tsx",
+    "frontend/src/data/crashCoursePlan.ts",
+    "frontend/src/data/faqDatabase.ts",
+    "frontend/src/data/ncertData.ts",
+    "frontend/src/hooks/useAIDoubtSolver.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useAlarms.ts",
+    "frontend/src/hooks/useAuth.ts",
+    "frontend/src/hooks/useCountdown.ts",
+    "frontend/src/hooks/useCrashCourse.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useNotifications.ts",
+    "frontend/src/hooks/usePomodoro.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/hooks/useSoundEffects.ts",
+    "frontend/src/hooks/useStopwatch.ts",
+    "frontend/src/hooks/useStudyStreak.ts",
+    "frontend/src/hooks/useSyllabusProgress.ts",
+    "frontend/src/hooks/useTestReminders.ts",
+    "frontend/src/hooks/useTheme.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

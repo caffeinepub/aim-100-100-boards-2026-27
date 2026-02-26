@@ -1,0 +1,8 @@
+{
+  "frontend/src/components/TestReminders.tsx": "Monthly test reminder management component with subject selection, date scheduling, urgency indicators, and due-soon alerts for tests within 3 days.",
+  "frontend/src/components/SyllabusTracker.tsx": "NCERT syllabus progress tracker with collapsible subject cards, chapter checkboxes, color-coded completion badges at 50/60/70/80/90/100% thresholds, and sound effects on completion.",
+  "frontend/src/components/ExamCountdown.tsx": "Live exam countdown timer showing days/hours/minutes/seconds with editable exam date, milestone messages, and a visual timeline of study milestones.",
+  "frontend/src/components/AchievementBadges.tsx": "Achievement badge display showing Legend (80%), Pro (90%), and GOAT (95%) syllabus badges plus streak badges, with fanfare sound on unlock and progress indicators for locked badges.",
+  "frontend/src/components/AIDoubtSolver.tsx": "Chat-style AI doubt solver with NCERT FAQ keyword matching, formatted markdown-style responses, typing indicator, suggested questions, and persistent chat history in localStorage.",
+  "frontend/src/components/CrashCourseMode.tsx": "90-day structured crash course with week-by-week accordion layout, daily task checklists with subject color coding, weekly motivational quotes, and overall/per-week progress tracking."
+}

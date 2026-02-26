@@ -1,0 +1,529 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Aim 100/100 Boards 2026–27 — Premium EdTech Study Platform",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create main application shell with premium EdTech visual theme",
+      "acceptanceCriteria": [
+        "Main title 'Aim 100/100 Boards 2026–27' is visible on the landing/home screen",
+        "Layout uses modern card components with shadow and border-radius",
+        "Typography uses a premium font pairing for headings and body text",
+        "Overall aesthetic resembles a top-tier EdTech platform"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Transform App.tsx into the main application shell. Add the title 'Aim 100/100 Boards 2026–27' prominently at the top. Implement a navigation structure with sections for Dashboard, Clock, Pomodoro, Image Gallery, Music Player, Notifications, Reminders, Syllabus Tracker, Exam Countdown, Achievements, AI Doubt Solver, and 90-Day Crash Course. Use card-based layout components from shadcn/ui."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define premium EdTech theme with modern typography. Import Google Fonts for a professional sans-serif heading font (e.g., Inter, Poppins) and readable body font. Set up CSS custom properties for rich deep tones (avoid blue/purple), ensuring cohesive color palette. Add base styles for card components with shadow and border-radius. Ensure dark mode variables are defined."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Configure Tailwind theme extension with premium EdTech colors (rich dark tones, gold/amber accents for dark mode, complementary light mode palette). Add custom font families matching the imported Google Fonts. Configure shadows and border-radius values for modern card styling."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create a Layout component that wraps all application content. Include a header with the main title 'Aim 100/100 Boards 2026–27', app logo, and theme toggle button. Add a sidebar navigation menu listing all major sections. Include a footer with branding. Use generated images: reference frontend/public/assets/generated/app-logo.dim_256x256.png for the app logo and frontend/public/assets/generated/hero-banner.dim_1400x500.png for the dashboard hero section."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement Dark/Light mode toggle with localStorage persistence",
+      "acceptanceCriteria": [
+        "Toggle button is accessible from all sections",
+        "Switching modes updates the entire UI immediately",
+        "Mode preference persists across page refreshes via localStorage"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useTheme.ts",
+          "operation": "create",
+          "description": "Create a custom hook useTheme that manages dark/light mode state using useState. Read initial theme from localStorage on mount. Provide toggleTheme function that switches between 'dark' and 'light', updates localStorage, and applies the theme class to document.documentElement. Return current theme and toggle function."
+        },
+        {
+          "path": "frontend/src/components/ThemeToggle.tsx",
+          "operation": "create",
+          "description": "Create ThemeToggle component using the useTheme hook. Render a button with sun/moon icons (from lucide-react) that calls toggleTheme onClick. Style using shadcn/ui Button component. This component will be placed in the Layout header."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Import and render ThemeToggle component in the header section, making it accessible from all application sections."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement login system with password protection and localStorage persistence",
+      "acceptanceCriteria": [
+        "Login form is shown when the user is not authenticated",
+        "User can set and change their password",
+        "Correct credentials grant access to the full platform",
+        "Login state persists in localStorage",
+        "Incorrect password shows an error message"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useAuth.ts",
+          "operation": "create",
+          "description": "Create useAuth hook managing authentication state. On first use, check localStorage for saved credentials. If none exist, set isFirstTime=true to prompt password setup. Store hashed password (using Web Crypto API SHA-256) in localStorage. Provide login(username, password), setPassword(password), and logout functions. Return isAuthenticated, isFirstTime, currentUser, and auth functions."
+        },
+        {
+          "path": "frontend/src/components/LoginScreen.tsx",
+          "operation": "create",
+          "description": "Create LoginScreen component using useAuth hook. If isFirstTime, show password setup form with username and password inputs. Otherwise, show login form with username and password. Use shadcn/ui Card, Input, and Button components. Display error message for incorrect credentials. On successful authentication, the App component will render the main platform."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import useAuth hook and LoginScreen component. Conditionally render: if not authenticated, show LoginScreen; if authenticated, show Layout with all application sections. This ensures lock screen appears before access to the platform."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Build Clock section with live clock, Alarm, and Stopwatch tabs",
+      "acceptanceCriteria": [
+        "Live clock displays current time and updates every second",
+        "User can add/remove alarms with specific times; alarm triggers an audio alert at the set time",
+        "Stopwatch counts up in HH:MM:SS.ms format with start, pause, lap, and reset",
+        "No UI glitches or timer drift"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ClockSection.tsx",
+          "operation": "create",
+          "description": "Create ClockSection component with three tabs using shadcn/ui Tabs. Tab 1: LiveClock showing current time (digital and analog display) updating every second with Date.now(). Tab 2: AlarmManager allowing user to add alarms with time picker, display alarm list, and trigger audio alert when alarm time matches current time (check every second). Tab 3: Stopwatch with start/pause/lap/reset controls, displaying HH:MM:SS.ms format using Date-based calculation to prevent drift."
+        },
+        {
+          "path": "frontend/src/hooks/useAlarms.ts",
+          "operation": "create",
+          "description": "Create useAlarms hook managing alarm state. Store alarms array in localStorage. Provide addAlarm(time), removeAlarm(id), and checkAlarms functions. checkAlarms runs every second via useEffect, compares current time with alarm times, and triggers audio playback when match occurs. Return alarms list and management functions."
+        },
+        {
+          "path": "frontend/src/hooks/useStopwatch.ts",
+          "operation": "create",
+          "description": "Create useStopwatch hook for glitch-free stopwatch. Use Date.now() based calculation instead of setInterval accumulation. Track startTime, isRunning, and laps array. Provide start, pause, lap, reset functions. Calculate elapsed time as (Date.now() - startTime) to prevent drift. Return formatted time string, isRunning state, laps, and control functions."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import ClockSection and add it to the main application navigation and routing structure within the Layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement Pomodoro-style study timer with configurable intervals and audio transitions",
+      "acceptanceCriteria": [
+        "Timer counts down correctly for focus and break intervals",
+        "Visual circular progress updates each second",
+        "Audio chime plays when a session or break ends",
+        "Session counter increments correctly",
+        "Timer is accurate even with tab switching (uses Date-based calculation, not setInterval drift)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/PomodoroTimer.tsx",
+          "operation": "create",
+          "description": "Create PomodoroTimer component with configurable focus (default 25 min) and break (default 5 min) intervals. Display circular progress indicator using SVG or shadcn/ui Progress component. Show session count and current mode (Focus/Break). Include settings to adjust interval durations. Play audio chime on transitions. Use Date.now() based countdown to prevent drift even when tab is in background."
+        },
+        {
+          "path": "frontend/src/hooks/usePomodoro.ts",
+          "operation": "create",
+          "description": "Create usePomodoro hook managing timer state. Track mode (focus/break/longBreak), sessionCount, remainingTime, and targetEndTime. Use Date.now() calculation for accurate countdown: remainingTime = targetEndTime - Date.now(). Provide start, pause, reset, and skip functions. After every 4 focus sessions, switch to long break (default 15 min). Return timer state and controls."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import PomodoroTimer and add it to the main application navigation and routing structure within the Layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Create Image Gallery with two 500-slot upload banks",
+      "acceptanceCriteria": [
+        "Two separate upload galleries exist (Bank A and Bank B), each with 500 slots",
+        "User can upload images to any empty slot",
+        "Images are displayed in a responsive grid",
+        "Slot usage counter is shown for each bank",
+        "Images persist in localStorage",
+        "Individual images can be deleted"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ImageGallery.tsx",
+          "operation": "create",
+          "description": "Create ImageGallery component with two tabs: Bank A and Bank B, each with 500 slots. Display slots in a responsive grid using CSS Grid. Show slot usage counter (e.g., '47/500 used'). For each empty slot, render an upload button. For filled slots, display the image thumbnail with a delete button overlay. Use the blob-storage component to handle image uploads and storage. Verify the component's usage instructions before implementing. Images are stored as ExternalBlob references in localStorage, leveraging blob-storage's ExternalBlob.fromBytes() for uploads and getDirectURL() for display."
+        },
+        {
+          "path": "frontend/src/hooks/useImageBank.ts",
+          "operation": "create",
+          "description": "Create useImageBank hook managing image storage for one bank. Store array of 500 slots (null or ExternalBlob reference) in localStorage. Provide uploadImage(slotIndex, file), deleteImage(slotIndex), and getUsedSlots functions. Use the blob-storage ExternalBlob class: ExternalBlob.fromBytes(imageData).withUploadProgress((pct) => ...) for uploads. Return slots array, upload/delete functions, and usage count."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import ImageGallery and add it to the main application navigation and routing structure within the Layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Add Spotify-inspired Music Player with curated tracks",
+      "acceptanceCriteria": [
+        "Music player section is accessible from the main nav",
+        "Tracks are categorized as Motivational or Binaural Beats",
+        "Play/pause, next, previous, and volume controls work correctly",
+        "Currently playing track name and type are displayed"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/MusicPlayer.tsx",
+          "operation": "create",
+          "description": "Create MusicPlayer component with Spotify-inspired UI. Define a curated list of publicly available motivation songs and binaural beats using direct audio URLs or embeds. Display track name, artist, and album art. Implement play/pause, next, previous, and volume controls using HTML5 Audio API. Add filter/tabs for 'Motivational' and 'Binaural Beats' categories. Use shadcn/ui Card and Button components for styling."
+        },
+        {
+          "path": "frontend/src/hooks/useAudioPlayer.ts",
+          "operation": "create",
+          "description": "Create useAudioPlayer hook managing audio playback state. Track currentTrack, isPlaying, volume, and playlist. Provide play, pause, next, previous, setVolume, and selectTrack functions. Use Audio() object to control playback. Return playback state and controls."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import MusicPlayer and add it to the main application navigation and routing structure within the Layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Add NextTopper Updates notification feed",
+      "acceptanceCriteria": [
+        "Notifications feed is accessible from the main nav with an unread badge",
+        "User can add a new notification entry (title, description, optional link)",
+        "Notifications are displayed newest-first",
+        "Notifications persist in localStorage",
+        "Marking a notification as read clears the unread badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/NotificationsFeed.tsx",
+          "operation": "create",
+          "description": "Create NotificationsFeed component labeled 'NextTopper Updates'. Display feed of notifications sorted newest-first. Each notification shows title, description, optional link, and timestamp. Include a form to manually add new notification (title, description, link). Show unread badge count on navigation icon. Use shadcn/ui Card, Badge, Input, and Textarea components."
+        },
+        {
+          "path": "frontend/src/hooks/useNotifications.ts",
+          "operation": "create",
+          "description": "Create useNotifications hook managing notifications state. Store notifications array in localStorage with fields: id, title, description, link, timestamp, isRead. Provide addNotification, markAsRead, markAllAsRead, and getUnreadCount functions. Return notifications list, unread count, and management functions."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Import useNotifications hook. Add notification icon to navigation menu with unread badge showing count. Clicking icon navigates to NotificationsFeed."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import NotificationsFeed and add it to the main application navigation and routing structure within the Layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Implement Monthly Test Reminder system",
+      "acceptanceCriteria": [
+        "User can set a monthly test date per subject",
+        "Upcoming tests are listed sorted by date",
+        "Banner alert appears for tests due today or within 3 days",
+        "Reminder data persists in localStorage"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/TestReminders.tsx",
+          "operation": "create",
+          "description": "Create TestReminders component allowing user to set monthly test date for each NCERT subject. Display upcoming tests in a list sorted by date. For tests due today or within 3 days, show an in-app banner alert. Use shadcn/ui Card, DatePicker, and Alert components. Store reminder data in localStorage."
+        },
+        {
+          "path": "frontend/src/hooks/useTestReminders.ts",
+          "operation": "create",
+          "description": "Create useTestReminders hook managing test reminder state. Store reminders array in localStorage with fields: id, subject, testDate. Provide addReminder, updateReminder, deleteReminder, getUpcomingTests, and getTestsDueSoon functions. getTestsDueSoon returns tests due today or within 3 days. Return reminders list and management functions."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import TestReminders and add it to the main application navigation and routing structure within the Layout. Import useTestReminders hook and conditionally render banner alert on dashboard if tests are due soon."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Build Syllabus Tracker with NCERT subjects and color-coded completion",
+      "acceptanceCriteria": [
+        "All major NCERT subjects for Classes 11 & 12 (Physics, Chemistry, Maths, Biology, English, etc.) are listed",
+        "Each subject has chapters that can be marked complete",
+        "Completion percentage is calculated and displayed per subject",
+        "Color-coded category badge changes at 50/60/70/80/90/100% thresholds",
+        "Progress persists in localStorage"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SyllabusTracker.tsx",
+          "operation": "create",
+          "description": "Create SyllabusTracker component listing all major NCERT subjects (Physics, Chemistry, Maths, Biology, English, etc.) for Classes 11 & 12. For each subject, display chapters with checkboxes to mark completion. Calculate and display completion percentage per subject and overall. Apply color-coded badge based on percentage: 50% (red), 60% (orange), 70% (yellow), 80% (light green), 90% (green), 100% (gold). Use shadcn/ui Card, Checkbox, Progress, and Badge components."
+        },
+        {
+          "path": "frontend/src/hooks/useSyllabusProgress.ts",
+          "operation": "create",
+          "description": "Create useSyllabusProgress hook managing syllabus progress state. Store progress data in localStorage with structure: { subject, chapters: [{ name, completed }] }. Provide toggleChapter(subject, chapter), getSubjectCompletion(subject), getOverallCompletion, and getCompletionCategory functions. getCompletionCategory returns color code based on percentage thresholds. Return progress data and management functions."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import SyllabusTracker and add it to the main application navigation and routing structure within the Layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Add Exam Countdown with motivational milestones",
+      "acceptanceCriteria": [
+        "User can set/edit the target exam date",
+        "Countdown displays DD:HH:MM:SS and updates every second",
+        "Milestone messages appear based on days remaining",
+        "Exam date persists in localStorage"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ExamCountdown.tsx",
+          "operation": "create",
+          "description": "Create ExamCountdown component allowing user to set/edit Board Exam date (defaulting to 2027 target). Display large countdown showing days, hours, minutes, and seconds remaining, updating every second. Show motivational milestone messages based on days remaining (e.g., '90 days left — time to sprint!'). Store exam date in localStorage. Use shadcn/ui Card, DatePicker, and large typography for countdown display."
+        },
+        {
+          "path": "frontend/src/hooks/useCountdown.ts",
+          "operation": "create",
+          "description": "Create useCountdown hook managing exam countdown state. Store targetDate in localStorage. Calculate remaining time as targetDate - Date.now(), format as DD:HH:MM:SS. Provide setExamDate and getMilestoneMessage functions. getMilestoneMessage returns motivational text based on days remaining. Return countdown values, target date, and setter function."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import ExamCountdown and add it to the main application navigation and routing structure within the Layout. Consider displaying countdown widget on dashboard as well."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Implement Achievement Badges and Study Streak Counter",
+      "acceptanceCriteria": [
+        "Legend badge is shown when overall completion ≥ 80%",
+        "Pro badge is shown when overall completion ≥ 90%",
+        "GOAT badge is shown when overall completion ≥ 95%",
+        "Study streak counter increments daily and resets if a day is missed",
+        "Badges and streak are displayed on the dashboard",
+        "Data persists in localStorage"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/AchievementBadges.tsx",
+          "operation": "create",
+          "description": "Create AchievementBadges component displaying earned badges based on overall syllabus completion. Show 'Legend' badge (≥80%), 'Pro' badge (≥90%), 'GOAT' badge (≥95%). Use generated badge images: frontend/public/assets/generated/badge-legend.dim_256x256.png, frontend/public/assets/generated/badge-pro.dim_256x256.png, and frontend/public/assets/generated/badge-goat.dim_256x256.png. Add animated reveal effect when new badge is unlocked using CSS transitions or Framer Motion. Display prominently on dashboard."
+        },
+        {
+          "path": "frontend/src/components/StudyStreak.tsx",
+          "operation": "create",
+          "description": "Create StudyStreak component showing consecutive days counter. Display current streak prominently using large numbers. Store streak data in localStorage with lastActiveDate. Increment streak if user logs in or completes study session on new day. Reset if a day is missed. Show streak history/calendar visualization if helpful."
+        },
+        {
+          "path": "frontend/src/hooks/useAchievements.ts",
+          "operation": "create",
+          "description": "Create useAchievements hook managing achievement state. Calculate earned badges based on useSyllabusProgress overall completion percentage. Provide getEarnedBadges and checkNewBadge functions. checkNewBadge detects when user crosses threshold and triggers badge unlock. Return earned badges and checking functions."
+        },
+        {
+          "path": "frontend/src/hooks/useStudyStreak.ts",
+          "operation": "create",
+          "description": "Create useStudyStreak hook managing streak state. Store currentStreak and lastActiveDate in localStorage. Provide recordActivity and checkStreak functions. checkStreak compares lastActiveDate with today: if same day, no change; if yesterday, increment; if older, reset to 1. Return current streak and record function."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import AchievementBadges and StudyStreak components. Display them prominently on the dashboard section. Call useStudyStreak checkStreak on app mount to update streak based on last login."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Add AI Doubt Solving section with pre-seeded FAQ responses",
+      "acceptanceCriteria": [
+        "Chat interface accepts user questions",
+        "Pre-seeded NCERT subject Q&A responses are returned for matching questions",
+        "A fallback message guides the user when no answer is found",
+        "Conversation history is shown in the chat window",
+        "History persists in localStorage"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/AIDoubtSolver.tsx",
+          "operation": "create",
+          "description": "Create AIDoubtSolver component with chat-style interface. User types questions in input field. Display conversation history in chat bubbles (user questions and AI responses). Use pre-seeded FAQ dataset covering NCERT subjects (Physics, Chemistry, Maths, Biology, English). Match user question keywords to FAQ entries and return appropriate answer. If no match, show fallback message suggesting rephrasing. Label responses as 'AI-assisted'. Store conversation history in localStorage. Use shadcn/ui Card, Input, and ScrollArea components."
+        },
+        {
+          "path": "frontend/src/hooks/useAIDoubtSolver.ts",
+          "operation": "create",
+          "description": "Create useAIDoubtSolver hook managing chat state. Store messages array in localStorage with fields: id, sender ('user'|'ai'), text, timestamp. Provide sendQuestion and clearHistory functions. sendQuestion performs keyword matching against FAQ dataset and adds user message and AI response to messages. Return messages array and management functions."
+        },
+        {
+          "path": "frontend/src/data/faqDatabase.ts",
+          "operation": "create",
+          "description": "Create faqDatabase.ts file containing pre-seeded FAQ dataset. Structure as array of { keywords: string[], subject: string, question: string, answer: string } objects. Cover common NCERT topics across Physics, Chemistry, Maths, Biology, English. Export as const faqData."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import AIDoubtSolver and add it to the main application navigation and routing structure within the Layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Create 90-Day Crash Course Mode section",
+      "acceptanceCriteria": [
+        "90-day plan is displayed with day-by-day tasks",
+        "Tasks can be marked complete with a checkbox",
+        "Weekly motivational quote is shown",
+        "Overall crash course progress % is displayed",
+        "Completion state persists in localStorage"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/CrashCourseMode.tsx",
+          "operation": "create",
+          "description": "Create CrashCourseMode component displaying structured 90-day study plan. Break down by day, week, and subject. Each day shows tasks list with checkboxes. Display weekly motivational quote at start of each week. Calculate and show overall crash course progress percentage. Use shadcn/ui Card, Checkbox, Progress, and Accordion components for collapsible weeks/days."
+        },
+        {
+          "path": "frontend/src/hooks/useCrashCourse.ts",
+          "operation": "create",
+          "description": "Create useCrashCourse hook managing crash course state. Store completion status for each day's tasks in localStorage with structure: { day, tasks: [{ name, completed }] }. Provide toggleTask(day, taskIndex), getDayCompletion(day), and getOverallProgress functions. Return plan data, completion state, and management functions."
+        },
+        {
+          "path": "frontend/src/data/crashCoursePlan.ts",
+          "operation": "create",
+          "description": "Create crashCoursePlan.ts file containing the 90-day study plan data. Structure as array of weeks, each with days, each with tasks array. Include weekly motivational quotes. Cover all NCERT subjects balanced across 90 days. Export as const crashCoursePlan."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import CrashCourseMode and add it to the main application navigation and routing structure within the Layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Add Sound Effects throughout the platform",
+      "acceptanceCriteria": [
+        "Click sound plays on interactive button presses",
+        "Success chime plays when marking items complete",
+        "Alarm/chime plays when Pomodoro or clock alarm fires",
+        "Fanfare plays when a new badge is unlocked",
+        "All sounds are subtle and non-intrusive"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useSoundEffects.ts",
+          "operation": "create",
+          "description": "Create useSoundEffects hook providing sound playback functions. Define Audio objects for: clickSound, successChime, alarmRing, badgeFanfare. Provide playClick, playSuccess, playAlarm, playFanfare functions that call audio.play(). Ensure sounds are short and subtle. Return sound playing functions."
+        },
+        {
+          "path": "frontend/public/sounds/click.mp3",
+          "operation": "create",
+          "description": "Add subtle click sound effect audio file. Use a short (50-100ms) soft click sound suitable for button presses."
+        },
+        {
+          "path": "frontend/public/sounds/success.mp3",
+          "operation": "create",
+          "description": "Add success chime sound effect audio file. Use a pleasant 1-2 second chime or bell tone for task completion."
+        },
+        {
+          "path": "frontend/public/sounds/alarm.mp3",
+          "operation": "create",
+          "description": "Add alarm ring sound effect audio file. Use a clear 2-3 second alarm or bell sound for Pomodoro and clock alarms."
+        },
+        {
+          "path": "frontend/public/sounds/fanfare.mp3",
+          "operation": "create",
+          "description": "Add badge unlock fanfare sound effect audio file. Use a celebratory 2-3 second fanfare or achievement sound for badge unlocks."
+        },
+        {
+          "path": "frontend/src/components/ClockSection.tsx",
+          "operation": "modify",
+          "description": "Import useSoundEffects hook. Call playAlarm when alarm triggers in the Alarm tab."
+        },
+        {
+          "path": "frontend/src/components/PomodoroTimer.tsx",
+          "operation": "modify",
+          "description": "Import useSoundEffects hook. Call playAlarm when Pomodoro session or break ends."
+        },
+        {
+          "path": "frontend/src/components/SyllabusTracker.tsx",
+          "operation": "modify",
+          "description": "Import useSoundEffects hook. Call playSuccess when a chapter is marked complete."
+        },
+        {
+          "path": "frontend/src/components/CrashCourseMode.tsx",
+          "operation": "modify",
+          "description": "Import useSoundEffects hook. Call playSuccess when a task is marked complete."
+        },
+        {
+          "path": "frontend/src/components/AchievementBadges.tsx",
+          "operation": "modify",
+          "description": "Import useSoundEffects hook. Call playFanfare when a new badge is unlocked (detected by useAchievements checkNewBadge)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import useSoundEffects hook at App level. Wire playClick to onClick handlers of major navigation buttons and CTAs throughout the app."
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Apply premium visual theme with gold/amber accents and motivational imagery",
+      "acceptanceCriteria": [
+        "Gold/amber accent color is used consistently for CTAs and highlights",
+        "Dark and light themes both look premium",
+        "Cards have shadow and smooth hover transitions",
+        "Hero/dashboard section includes a motivational visual element"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Refine premium visual theme with gold/amber accent colors (e.g., #F59E0B, #FCD34D) for CTAs and highlights in dark mode. Use deep charcoal/slate backgrounds (#1E293B, #0F172A) with crisp white text. For light mode, use soft neutrals with complementary warm accents. Define CSS custom properties for both themes. Add smooth hover transitions for cards and buttons."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Update Tailwind config to include gold/amber accent colors in theme.extend.colors (e.g., accent: '#F59E0B'). Configure card shadows and hover transition durations. Ensure both dark and light theme palettes are defined for consistent premium aesthetic."
+        },
+        {
+          "path": "frontend/src/components/Dashboard.tsx",
+          "operation": "create",
+          "description": "Create Dashboard component serving as the main landing view. Display hero section with motivational banner using frontend/public/assets/generated/hero-banner.dim_1400x500.png as background image. Overlay title and key stats (study streak, overall completion, next test, countdown). Include quick-access cards for major sections. Use premium card styling with shadows and hover effects. This is the default view after login."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import Dashboard component and set it as the default route/view after successful authentication within the Layout."
+        }
+      ]
+    }
+  ]
+}
